@@ -18,8 +18,10 @@ app.use(express.json());
 //  app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
  app.use(express.static(path.join(__dirname, 'dist')));
 
- // The following "catch all" route (note the *) is necessary
-// to return the index.html on all non-AJAX requests
+// put API routes here, before the 'catch all' route
+app.use('/api/users', require('./routes/api/users'));
+
+// THEN the catch-all route
 app.use(function(req, res) {
   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
